@@ -4,11 +4,19 @@
 
 Updating the submodule:
 ```bash
+# new PR branch
+git branch update
+git switch update
+
+# update submodule
 cd $SUBMODULE_DIR
 git checkout $DESIRED_COMMIT_OR_TAG
 cd ../
 
+# commit, send PR
 git add $SUBMODULE_DIR
 git commit -m '[...]'
 git push
 ```
+
+This was done in: https://github.com/hinto-janai/book-test/pull/1.
