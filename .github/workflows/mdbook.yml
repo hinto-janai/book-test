@@ -5,10 +5,6 @@
 name: Deploy mdBook site to Pages
 
 on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -34,7 +30,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          submodules: true # Must checkout the main repo containing the book source.
+          repository: hinto-janai/labeler-test
       - name: Install mdBook
         run: |
           cargo install --version ${MDBOOK_VERSION} mdbook
@@ -43,11 +39,11 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
       - name: Build with mdBook
-        run: mdbook build labeler-test/book/test
+        run: mdbook build book/test
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: labeler-test/book/test/book
+          path: book/test/book
 
   # Deployment job
   deploy:
